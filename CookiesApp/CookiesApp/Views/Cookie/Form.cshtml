@@ -1,0 +1,39 @@
+@model Cookie
+
+@{
+   ViewData["Title"] = "Form";
+}
+
+<h2>@ViewBag.Action Ciastka</h2>
+<div class="content">
+   <form method="post">
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      <span class="form-group">
+         <label asp-for="Name">Nazwa</label>
+         <input asp-for="Name"/>
+         <span asp-validation-for="Name"></span>
+      </span>
+      <span class="form-group">
+         <label asp-for="Allergens">Alergeny</label>
+         <input asp-for="Allergens"/>
+         <text id="allergen_info">Poprawny zapis: "jaja, mąka pszenna, mleko"</text>
+         <span asp-validation-for="Allergens"></span>
+      </span>
+      <span class="form-group">
+         <label asp-for="ManufacturerId">Producent</label>
+         <select asp-for="ManufacturerId" asp-items="@ViewBag.ManufacturersId"></select>
+         <span asp-validation-for="ManufacturerId"></span>
+      </span>
+      <span class="form-group">
+         <label asp-for="ImageUrl">Link do zdjęcia</label>
+         <input asp-for="ImageUrl"/>
+         <span asp-validation-for="ImageUrl"></span>
+      </span>
+      <span class="form-buttons">
+         <button type="submit">@ViewBag.Action</button>
+         <a class="outbutton" asp-action="Index">
+            <button type="button">Anuluj</button>
+         </a>
+      </span>
+   </form>
+</div>

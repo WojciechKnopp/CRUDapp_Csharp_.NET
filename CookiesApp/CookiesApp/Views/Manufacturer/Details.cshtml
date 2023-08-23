@@ -1,0 +1,25 @@
+@model Manufacturer
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "Custom_Layout1";
+}
+<h2>Lista Producentów</h2>
+
+<div class="content">
+    <h3>@Model.Name</h3>
+    <h5>@Model.YearFounded</h5>
+    <span>Ciastka:</span>
+    <ul>
+    @foreach(Cookie item in ViewBag.Cookies)
+    {
+        <li>@item.Name</li>
+    }
+    </ul>
+</div>
+
+<div>
+    <a class="outbutton" asp-action="Create">
+        <button type="button">Dodaj nowego producenta</button>
+    </a>
+</div>

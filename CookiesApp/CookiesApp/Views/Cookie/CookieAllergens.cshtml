@@ -1,0 +1,36 @@
+@model IEnumerable<Cookie>
+
+@{
+    ViewData["Title"] = "Alergeny";
+    Layout = "Custom_Layout2";
+}
+
+<script src="lib/jquery/dist/jquery.min.js"></script>
+
+
+<h2>Lista Alergenów w Ciastkach</h2>
+<div class="d-flex flex-row">
+    <div class="content left">
+        @foreach (Manufacturer m in ViewBag.Manufacturers)
+        {
+            <h3 style="margin: 0">@m.Name</h3>
+            <span class="d-flex flex-column" style="margin-bottom: 20px">
+                @foreach (var c in Model)
+                {
+                    @if (c.ManufacturerId == m.Id)
+                    {
+                        <a class="part" onclick="loadPartial(@c.Id)">@c.Name</a>
+                    }
+                }
+            </span>
+        }
+    </div>
+    <div class="content right" id="partial-load"></div>
+</div>
+
+
+<script type="text/javascript">
+    function loadPartial(id){
+        $("#partial-load").load("/Cookie/AllergenList/"+id);
+    }
+</script>

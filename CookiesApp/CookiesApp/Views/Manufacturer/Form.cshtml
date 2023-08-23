@@ -1,0 +1,29 @@
+@model Manufacturer
+
+@{
+   ViewData["Title"] = "Form";
+   Layout = "Custom_Layout1";
+}
+
+<h2>@ViewBag.Action Producenta</h2>
+<div class="content">
+   <form method="post" id="manufacturer-form">
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      <span class="form-group">
+         <label asp-for="Name">Nazwa</label>
+         <input asp-for="Name"/>
+         <span asp-validation-for="Name"></span>
+      </span>
+      <span class="form-group">
+         <label asp-for="YearFounded">Rok założenia</label>
+         <input asp-for="YearFounded"/>
+         <span asp-validation-for="YearFounded"></span>
+      </span>
+      <span class="form-buttons">
+         <button type="submit">@ViewBag.Action</button>
+         <a class="outbutton" asp-action="Index">
+            <button type="button">Anuluj</button>
+         </a>
+      </span>
+   </form>
+</div>

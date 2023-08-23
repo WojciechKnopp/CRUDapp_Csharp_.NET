@@ -1,0 +1,63 @@
+@model ICollection<Manufacturer>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "Custom_Layout1";
+}
+<h2>Lista Producentów</h2>
+
+<div class="content">
+    @if (Model.Count() == 0)
+    {
+        <p>Wygląda na to, że nie ma żadnych producentów w bazie.</p>
+    }
+    else
+    {
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    Nazwa
+                </th>
+                <th>
+                    Rok założenia
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (Manufacturer item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.YearFounded
+                    </td>
+                    <td class="narrow">
+                        <a class="outbutton" asp-action="Edit" asp-route-id="@item.Id">
+                            <button type="button">Edytuj</button>
+                        </a>
+                    </td>
+                    <td class="narrow">
+                        <form asp-route-id="@item.Id" asp-action="Delete" method="post">
+                            <button type="submit">Usuń</button>
+                        </form>
+                    </td>
+                    <td class="narrow">
+                        <a class="outbutton" asp-action="Details" asp-route-id="@item.Id">
+                            <button type="button">Szczegóły</button>
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+</div>
+
+<div>
+    <a class="outbutton" asp-action="Create">
+        <button type="button">Dodaj nowego producenta</button>
+    </a>
+</div>

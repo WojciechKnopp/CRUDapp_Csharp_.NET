@@ -1,0 +1,12 @@
+@model Cookie
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="content">
+    <h3>@Model.Name</h3>
+    <h5>@Model.Manufacturer.Name</h5>
+    <list string-list="@Model.Allergens">Alergeny:</list>
+    <img class="bisc-image-big" src="@Url.Content(Model.ImageUrl)" alt=""/>
+</div>

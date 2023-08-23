@@ -1,0 +1,68 @@
+@model ICollection<Cookie>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h2>Lista Ciastek</h2>
+
+<div class="content">
+    @if (Model.Count() == 0)
+    {
+        <p>Wygląda na to, że nie ma żadnych ciastek w bazie.</p>
+    }
+    else
+    {
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Nazwa
+                </th>
+                <th>
+                    Producent
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Id
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.Manufacturer.Name
+                    </td>
+                    <td class="narrow">
+                        <a class="outbutton" asp-action="Edit" asp-route-id="@item.Id">
+                            <button type="button">Edytuj</button>
+                        </a>
+                    </td>
+                    <td class="narrow">
+                        <form asp-route-id="@item.Id" asp-action="Delete" method="post">
+                            <button type="submit">Usuń</button>
+                        </form>
+                    </td>
+                    <td class="narrow">
+                        <a class="outbutton" asp-action="Details" asp-route-id="@item.Id">
+                            <button type="button">Szczegóły</button>
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+</div>
+
+<div>
+    <a class="outbutton" asp-action="Create">
+        <button type="button">Dodaj nowe ciastka</button>
+    </a>
+</div>
